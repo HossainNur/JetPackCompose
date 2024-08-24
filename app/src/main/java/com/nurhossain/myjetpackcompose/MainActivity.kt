@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -105,6 +108,11 @@ fun AppTitle() {
 }
 
 @Composable
+fun AppIcon() {
+    Icon(imageVector = Icons.Filled.Home, contentDescription = "Home")
+}
+
+@Composable
 fun UserBio(name: String,bio: String) {
     Column {
         Text(text = name, style = MaterialTheme.typography.headlineMedium)
@@ -127,6 +135,7 @@ fun GreetingPreview() {
             
         }*/
         //AppTitle()
-        UserBio(name = "nur", bio = "Android Developer")
+        //UserBio(name = "nur", bio = "Android Developer")
+        AppIcon()
     }
 }
