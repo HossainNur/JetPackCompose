@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,11 +37,20 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         modifier = modifier
     )
 }
+@Composable
+fun MyButton(text: String,onClick:() -> Unit){
+    Button(onClick = { /*TODO*/ }) {
+        Text(text = text)
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MyJetPackComposeTheme {
         Greeting("Nur Hossain")
+        MyButton("Click me"){
+
+        }
     }
 }
