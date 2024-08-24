@@ -19,8 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.nurhossain.myjetpackcompose.ui.theme.MyJetPackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -90,6 +93,25 @@ fun ButtonWithStyle(text: String, onClick: () -> Unit) {
     }
 }
 
+@Composable
+fun AppTitle() {
+    Text(text = "My App",
+        style = TextStyle(
+            color = Color.Blue,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
+        )
+    )
+}
+
+@Composable
+fun UserBio(name: String,bio: String) {
+    Column {
+        Text(text = name, style = MaterialTheme.typography.headlineMedium)
+        Text(text = bio, lineHeight = 24.sp)
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -101,8 +123,10 @@ fun GreetingPreview() {
         //UserProfile(name = "nur", age = 20)
        // Subject(favSub = "english", generalSub = "math")
         //CenterMessage(message = "Hello I am nur Hossain ")
-        ButtonWithStyle(text = "Click Me") {
+        /*ButtonWithStyle(text = "Click Me") {
             
-        }
+        }*/
+        //AppTitle()
+        UserBio(name = "nur", bio = "Android Developer")
     }
 }
