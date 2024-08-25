@@ -120,7 +120,7 @@ fun UserBio(name: String,bio: String) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     MyJetPackComposeTheme {
@@ -136,6 +136,6 @@ fun GreetingPreview() {
         }*/
         //AppTitle()
         //UserBio(name = "nur", bio = "Android Developer")
-        AppIcon()
+        //AppIcon()
     }
 }
