@@ -13,15 +13,20 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -31,12 +36,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,8 +64,70 @@ class MainActivity : ComponentActivity() {
                     Subject(favSub = "english", generalSub = "math")
                 }
                 MyButton()
+                FloatingActionButtons()
             }
         }
+    }
+}
+
+@Composable
+fun FloatingActionButtons() {
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .fillMaxHeight()
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Floating Action Buttons in Android\nJetpack Compose",
+            color = Color.Green,
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Bold, textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // a simple floating action button
+        FloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Simple Floating Action Button",
+                    Toast.LENGTH_SHORT).show()
+            },
+            containerColor = Color.Green,
+            contentColor = Color.White
+        ) {
+            // adding icon for button.
+            Icon(Icons.Filled.Add, "")
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // a square floating action button
+        FloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Square Floating Action Button",
+                    Toast.LENGTH_SHORT).show()
+            },
+            shape = RectangleShape,
+            containerColor = Color.Green,
+            contentColor = Color.White
+        ) {
+            Icon(Icons.Filled.Add, "")
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // an extended floating action button.
+        ExtendedFloatingActionButton(
+            text = { Text(text = "Extended FAB") },
+            onClick = {
+                Toast.makeText(context, "Extended Floating Action Button",
+                    Toast.LENGTH_SHORT).show()
+            },
+            containerColor = Color.Green,
+            contentColor = Color.White,
+            icon = { Icon(Icons.Filled.Add, "") }
+        )
     }
 }
 
