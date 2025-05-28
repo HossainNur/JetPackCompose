@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -29,9 +30,12 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,6 +69,77 @@ class MainActivity : ComponentActivity() {
                 }
                 MyButton()
                 FloatingActionButtons()
+
+                Column {
+                    SimpleRadioButtonComponent()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SimpleRadioButtonComponent() {
+    val radioOptions = listOf("DSA", "Java", "C++")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        // we are displaying all our
+        // radio buttons in column.
+        radioOptions.forEach { text ->
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .selectable(
+                        selected = (text == selectedOption),
+                        onClick = { onOptionSelected(text) }
+                    )
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                val context = LocalContext.current
+
+                // below line is used to
+                // generate radio button
+                RadioButton(
+                    // inside this method we are
+                    // adding selected with a option.
+                    selected = (text == selectedOption),
+
+                    onClick = {
+                        onOptionSelected(text)
+                        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+                    },
+                    modifier = Modifier.padding(8.dp),
+
+                    // below line is used to make the RadioButton
+                    // is enabled, allowing it to be clickable
+                    enabled = true,
+
+                    // below line is used for customizing colors in RadioButton
+                    colors = RadioButtonDefaults.colors(
+                        Color.Green,
+                        Color.DarkGray
+                    ),
+
+                    // below line is uses a default MutableInteractionSource
+                    // to handle interaction states
+                    interactionSource = remember { MutableInteractionSource() }
+                )
+
+                // below line is used to add
+                // text to our radio buttons
+                Text(
+                    text = text,
+                    modifier = Modifier.padding(start = 16.dp),
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
